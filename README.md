@@ -1,4 +1,4 @@
-# ProteinLanguageModel
+# Protein Language Model
 Protein language models, such as ESM-2 is a deep learning model trained on large datasets of protein sequences, learning patterns, relationships, and general features in those sequences. Like natural language processing (NLP) models such as GPT, these models are trained to predict the next amino acid in a sequence, or to understand the context of protein sequences in a way similar to how language models understand words in a sentence.
 
 Protein language models (PLMs) can be extremely powerful tools for binding affinity improvement, particularly because they capture rich, high-dimensional representations of protein sequences. These representations can be leveraged in a variety of ways to predict and improve protein-ligand binding affinity or other properties relevant to molecular interactions. There are several approaches that can be used to achieve this, spanning embeddings, supervised learning, unsupervised learning, and even hybrid strategies. Here are some approaches that will be highlighted in this repository:
