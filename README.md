@@ -13,3 +13,111 @@ Protein language models (PLMs) can be extremely powerful tools for binding affin
 
 5. Zero-shot prediction (ZSHOT): Zero-shot prediction using protein language models involves generalizing learned knowledge to new tasks without task-specific fine-tuning, which allow the model to make predictions or perform tasks without having been specifically trained on specific tasks. It leverages the general knowledge the model has acquired during its pre-training phase, where it learns from a vast corpus of protein sequences and their relationships (sequence-function, sequence-structure, etc.) without explicit task-specific labels. 
  
+This repository aims to serve a resource for machine learning using available descriptors and protein language models.
+
+The workflow include some machine learning and deep learning approaches for protein function improvement, especially for GFP intensity improvement.
+
+Dataset: GFP protein mutants
+
+Jupyter notebook is provided for each section: 
+- ML-Beginners.ipynb: A Step-by-step Guide to Perform Machine Learning on GFP dataset using scikit-learn and GridSearch
+- SL-AAFeat.ipynb: A Workflow for Supervised Learning Using Amino Acid Descriptors
+- SL-Embed.ipynb : A Workflow for Supervised Learning Using Protein Language Model Embeddings 
+- ANN-SV.ipynb: A Workflow for Embedding-based Fine-tuning with Simple Artificial Neural Network
+- FT-SV.ipynb : A Workflow for Protein Language Model Fine-tuning with Supervised Learning Objective
+- FT-MLM.ipynb : A Workflow for Protein Language Model Fine-tuning with Masked Language Modeling Objective
+- ZSHOT.ipynb : A Workflow for Zero-shot Prediction Using ESM-based Models
+
+Here, JupyterLab will be installed and used. JupyterLab is a more advanced and feature-rich interface for Jupyter Notebooks and provides a flexible environment for working with code, data, and visualizations. 
+
+------------------------------------------------------------
+1. Create a New Conda Environment (Optional but Recommended)
+------------------------------------------------------------
+It’s generally a good idea to install JupyterLab in a dedicated environment to avoid conflicts with other packages. To create a new environment, run:
+	$ conda env remove -n mlearn -y 
+	$ conda create -n mlearn python=3.12
+	$ conda activate mlearn
+
+------------------------------------------------------------
+2. Install JupyterLab
+------------------------------------------------------------
+
+	$ conda install conda-forge::jupyterlab 
+
+------------------------------------------------------------
+3. Launch JupyterLab
+------------------------------------------------------------
+Once JupyterLab is installed, you can start it by running:
+
+	$ jupyter-lab
+
+This will launch JupyterLab in your default web browser. It will typically open at http://localhost:8888 (or another port if 8888 is already in use).
+
+Alternatively, create conda environment from the provided yml file: 
+
+$ conda env create -f mlearn.yml
+
+------------------------------------------------------------
+4. Analysis
+------------------------------------------------------------
+- All codes and data used in this study were made available (scripts/ and data/)
+- Installation of required Python packages will be performed on Jupyter Notebook
+- To use the scripts, please manually download required packages separately.
+
+------------------------------------------------------------
+# ML-Beginners :  A step-by-step guide to perform machine learning on GFP dataset
+------------------------------------------------------------
+Dataset: data/umetsu/Umetsu_GFP.csv and data/umetsu/Umetsu_GFP_T-scale_pred.csv
+Step 1: Data loading and processing
+Step 2: Model selection
+Step 3: Model construction
+Step 4: Model prediction
+
+------------------------------------------------------------
+# SL-AAFeat: A workflow to perform machine learning on amino acid features from a descriptor
+------------------------------------------------------------
+Dataset: data/fluorescence.csv (contains 'sequence' and 'label')
+
+Step 1: Generate Features
+$ python scripts/get_aafeat.py -i data/fluorescence.csv -o data/features/ms_whim_scores.csv -f ms_whim_scores -seqcol sequence
+
+------------------------------------------------------------
+# SL-AAFeat: A workflow to perform machine learning on amino acid features from a descriptor
+------------------------------------------------------------
+Step 1: Generate Features
+
+$ python scripts/get_aafeat.py -i data/fluorescence.csv -o data/ms_whim_scores.csv -f ms_whim_scores -seqcol sequence
+
+# Step 2: Supervised Machine Learning
+	- Data preprocessing
+	- Model selection
+	- Hyperparameter optimization and model construction
+	- Model prediction
+
+# Run with default parameters
+$ python scripts/slearn.py -mode default -i data/ms_whim_scores.csv -o results/ms_whim_scores 
+
+# Run hyperparameter optimization
+$ python scripts/slearn.py -mode optim -i data/ms_whim_scores.csv -o results/ms_whim_scores
+
+------------------------------------------------------------
+# SL-Embed: A workflow to perform machine learning on embeddings extracted from a protein language model
+------------------------------------------------------------
+Step 1: Generate embeddings
+python scripts/get_embed.py -i data/fluorescence.csv -o data/esm2_t6_8M_UR50D.csv -cp facebook/esm2_t6_8M_UR50D -seqcol sequence
+
+------------------------------------------------------------
+# ANN-Embed
+------------------------------------------------------------
+
+------------------------------------------------------------
+# FT-SV
+------------------------------------------------------------
+
+------------------------------------------------------------
+# FT-MLM
+------------------------------------------------------------
+
+------------------------------------------------------------
+# ZSHOT
+------------------------------------------------------------
