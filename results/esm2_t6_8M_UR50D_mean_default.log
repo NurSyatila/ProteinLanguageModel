@@ -1,0 +1,4 @@
+train: 2097, test: 2552
+default score: 0.49465428092133806
+test score: 0.49465428092133806
+time taken:  4.277214050292969 sec.

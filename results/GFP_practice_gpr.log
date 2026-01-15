@@ -1,0 +1,43 @@
+Load model and parameter grid..
+
+---- MODEL SELECTION ----
+
+Default Hyperparameters..
+cv scores:
+0.6373852110521327
+0.6263686765401205
+0.35497614640441555
+0.7213061494551493
+0.5529233022977879
+mean score:
+0.5785918971499212
+
+Hyperparameter optimization with GridSearchCV..
+Fitting 5 folds for each of 4 candidates, totalling 20 fits
+Fitting 5 folds for each of 4 candidates, totalling 20 fits
+Fitting 5 folds for each of 4 candidates, totalling 20 fits
+Fitting 5 folds for each of 4 candidates, totalling 20 fits
+Fitting 5 folds for each of 4 candidates, totalling 20 fits
+cv scores and parameters:
+0.6373852110521327 {'n_restarts_optimizer': 5}
+0.6263686765401205 {'n_restarts_optimizer': 5}
+0.35497614640441555 {'n_restarts_optimizer': 5}
+0.7213061494551493 {'n_restarts_optimizer': 5}
+0.5529233022977879 {'n_restarts_optimizer': 5}
+mean score:
+0.5785918971499212
+
+---- MODEL CONSTRUCTION ----
+
+Default Hyperparameters..
+default score: 0.6183810096914947
+
+Hyperparameter optimization with GridSearchCV..
+Fitting 5 folds for each of 4 candidates, totalling 20 fits
+best parameter: {'n_restarts_optimizer': 5}
+best score: 0.5785918971499212
+
+---- MODEL PREDICTION ---- 
+
+score (actual vs. prediction): 0.037923251242282005
+time taken:  0.8126590251922607 sec.

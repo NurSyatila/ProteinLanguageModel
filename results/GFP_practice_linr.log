@@ -1,0 +1,43 @@
+Load model and parameter grid..
+
+---- MODEL SELECTION ----
+
+Default Hyperparameters..
+cv scores:
+nan
+nan
+nan
+nan
+nan
+mean score:
+nan
+
+Hyperparameter optimization with GridSearchCV..
+Fitting 5 folds for each of 13 candidates, totalling 65 fits
+Fitting 5 folds for each of 13 candidates, totalling 65 fits
+Fitting 5 folds for each of 13 candidates, totalling 65 fits
+Fitting 5 folds for each of 13 candidates, totalling 65 fits
+Fitting 5 folds for each of 13 candidates, totalling 65 fits
+cv scores and parameters:
+0.629516257829267 {'alpha': 0.01}
+0.6207030302196572 {'alpha': 0.02}
+0.0984467179361579 {'alpha': 0.01}
+0.6937753803919756 {'alpha': 0.01}
+0.5716078193967118 {'alpha': 0.01}
+mean score:
+0.5228098411547538
+
+---- MODEL CONSTRUCTION ----
+
+Default Hyperparameters..
+default score: nan
+
+Hyperparameter optimization with GridSearchCV..
+Fitting 5 folds for each of 13 candidates, totalling 65 fits
+best parameter: {'alpha': 0.01}
+best score: 0.5214878570133124
+
+---- MODEL PREDICTION ---- 
+
+score (actual vs. prediction): -0.001856800304612085
+time taken:  0.5297112464904785 sec.
