@@ -42,18 +42,24 @@ conda activate mlearn
 
 ### 2. Install JupyterLab
 
-```conda install conda-forge::jupyterlab``` 
+```
+conda install conda-forge::jupyterlab
+``` 
 
 ### 3. Launch JupyterLab
 Once JupyterLab is installed, you can start it by running:
 
-```jupyter-lab```
+```
+jupyter-lab
+```
 
 This will launch JupyterLab in your default web browser. It will typically open at http://localhost:8888 (or another port if 8888 is already in use).
 
 Alternatively, create conda environment from the provided yml file: 
 
-```conda env create -f mlearn.yml```
+```
+conda env create -f mlearn.yml
+```
 
 ### 4. Analysis
 	- All codes and data used in this study were made available (scripts/ and data/)
@@ -201,11 +207,15 @@ function finetune {
 ```
 Run the function with arguments in command line / terminal
 
-*Supervised learning task*
-```sh scripts/finetune.sh finetune sv data/fluorescence.csv```
+*Supervised learning task:*
+```
+sh scripts/finetune.sh finetune sv data/fluorescence.csv
+```
 
-*Masked language modeling task*
-```sh scripts/finetune.sh finetune mlm data/fluorescence_homologs.fasta```
+*Masked language modeling task:*
+```
+sh scripts/finetune.sh finetune mlm data/fluorescence_homologs.fasta
+```
 
 ## ZSHOT
 
@@ -248,7 +258,7 @@ python scripts/zero_shot.py \
 - First residue start with 0
 - The offset_idx is only used to get score from the data
 
-#Try for all residues
+**Try for all residues**
 
 ```
 python scripts/zero_shot.py \
@@ -261,7 +271,7 @@ python scripts/zero_shot.py \
 		-score masked-marginals
 ```
 
-#Try for residue 0-9
+**Try for residue 0-9**
 
 ```
 python scripts/zero_shot.py \
