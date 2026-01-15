@@ -34,26 +34,26 @@ Here, JupyterLab will be installed and used. JupyterLab is a more advanced and f
 ### 1. Create a New Conda Environment (Optional but Recommended)
    
 It’s generally a good idea to install JupyterLab in a dedicated environment to avoid conflicts with other packages. To create a new environment, run:
-	```
-	conda env remove -n mlearn -y
-	conda create -n mlearn python=3.12
-	conda activate mlearn
-	```
+```
+conda env remove -n mlearn -y
+conda create -n mlearn python=3.12
+conda activate mlearn
+```
 
 ### 2. Install JupyterLab
 
-	```conda install conda-forge::jupyterlab``` 
+```conda install conda-forge::jupyterlab``` 
 
 ### 3. Launch JupyterLab
 Once JupyterLab is installed, you can start it by running:
 
-	```jupyter-lab```
+```jupyter-lab```
 
 This will launch JupyterLab in your default web browser. It will typically open at http://localhost:8888 (or another port if 8888 is already in use).
 
 Alternatively, create conda environment from the provided yml file: 
 
-	```conda env create -f mlearn.yml```
+```conda env create -f mlearn.yml```
 
 ### 4. Analysis
 	- All codes and data used in this study were made available (scripts/ and data/)
@@ -73,14 +73,15 @@ Dataset: data/umetsu/Umetsu_GFP.csv and data/umetsu/Umetsu_GFP_T-scale_pred.csv
 	Available features: blosum_indices fasgai_vectors ms_whim_scores protfp_descriptors st_scales t_scales vhse_scale z_scales 
 						(and more, refer to https://github.com/althonos/peptides.py)
 
-	```
-	python scripts/GFP_practice.py -mode workflow \
-									  -i data/umetsu/Umetsu_GFP.csv \
-									  -p data/umetsu/Umetsu_GFP_T-scale_pred.csv \
-									  -o results/GFP_practice_gpr \
-									  -feature t_scales \
-									  -model gpr
-	```
+```
+python scripts/GFP_practice.py \
+			-mode workflow \
+			-i data/umetsu/Umetsu_GFP.csv \
+			-p data/umetsu/Umetsu_GFP_T-scale_pred.csv \
+			-o results/GFP_practice_gpr \
+			-feature t_scales \
+			-model gpr
+```
 	
 ## SL-AAFeat: A workflow to perform machine learning on amino acid features from a descriptor
 
@@ -89,9 +90,10 @@ Dataset: data/fluorescence.csv (contains 'sequence' and 'label')
 **Step 1: Generate Features**  (default sequence column: 'sequence')
 
 ```
-python scripts/get_aafeat.py -i data/fluorescence.csv \
-						        -o data/features/ms_whim_scores.csv \
-                                -f ms_whim_scores -seqcol sequence
+python scripts/get_aafeat.py \
+			-i data/fluorescence.csv \
+			-o data/features/ms_whim_scores.csv \
+			-f ms_whim_scores -seqcol sequence
 ```
 
 **Step 2: Supervised Machine Learning**
@@ -101,17 +103,30 @@ python scripts/get_aafeat.py -i data/fluorescence.csv \
 	- Model evaluation
 
 *Run with default parameters (default random seed = 42)*
-```python scripts/slearn.py -mode default -i data/ms_whim_scores.csv -o results/ms_whim_scores_default```
+```
+python scripts/slearn.py \
+		-mode default -i data/ms_whim_scores.csv \
+		-o results/ms_whim_scores_default
+```
 
 *Run hyperparameter optimization (default number of trials, nt = 30, default random seed = 42)*
-```python scripts/slearn.py -mode optim -i data/ms_whim_scores.csv -o results/ms_whim_scores_optim -nt 5```
+```
+python scripts/slearn.py \
+		-mode optim -i data/ms_whim_scores.csv
+		-o results/ms_whim_scores_optim -nt 5
+```
 
 ## SL-Embed: A workflow to perform machine learning on embeddings extracted from a protein language model
 
 **Step 1: Generate embeddings** (default sequence column: 'sequence')
 Three different pooling strategies are available: mean (default), max, sum.
 
-```python scripts/get_embed.py -i data/fluorescence.csv -o data/esm2_t6_8M_UR50D_mean.csv -cp facebook/esm2_t6_8M_UR50D -p mean```
+```
+python scripts/get_embed.py \
+		-i data/fluorescence.csv \
+		-o data/esm2_t6_8M_UR50D_mean.csv \
+		-cp facebook/esm2_t6_8M_UR50D -p mean
+```
 
 **Step 2: Supervised Machine Learning**
 	- Data preprocessing
@@ -120,10 +135,18 @@ Three different pooling strategies are available: mean (default), max, sum.
 	- Model evaluation
 
 *Run with default parameters (default random seed = 42)*
-```python scripts/slearn.py -mode default -i data/esm2_t6_8M_UR50D_mean.csv -o results/esm2_t6_8M_UR50D_mean_default```
+```
+python scripts/slearn.py \
+		-mode default -i data/esm2_t6_8M_UR50D_mean.csv \
+		-o results/esm2_t6_8M_UR50D_mean_default
+```
 
 *Run hyperparameter optimization (default number of trials, nt = 30, default random seed = 42)*
-```python scripts/slearn.py -mode optim -i data/esm2_t6_8M_UR50D_mean.csv -o results/esm2_t6_8M_UR50D_mean_optim -nt 5```
+```
+python scripts/slearn.py \
+		-mode optim -i data/esm2_t6_8M_UR50D_mean.csv \
+		-o results/esm2_t6_8M_UR50D_mean_optim -nt 5
+```
 
 ## FT: Protein Language Model Finetuning with Supervised Learning Task (SV) or Masked Language Modeling Task (MLM)
 
@@ -141,21 +164,24 @@ Three different pooling strategies are available: mean (default), max, sum.
 
 *#Example 1: A single run*
 ```
-python scripts/finetune.py -obj sv -default \
-						   -f True -i data/fluorescence.csv \
-                           -o results/esm2_t6_8M_UR50D_sv_full_default \
-						   -cp facebook/esm2_t6_8M_UR50D -nt1 3 -nt2 3
+python scripts/finetune.py \
+		-obj sv -default \
+		-f True -i data/fluorescence.csv \
+		-o results/esm2_t6_8M_UR50D_sv_full_default \
+		-cp facebook/esm2_t6_8M_UR50D -nt1 3 -nt2 3
 ```
 
 ```
-python scripts/finetune.py -obj mlm -default \
-                           -f True -i data/fluorescence_homologs.fasta \
- 				           -o results/esm2_t6_8M_UR50D_mlm_full_default \
-                           -cp facebook/esm2_t6_8M_UR50D -nt1 3 -nt2 3
+python scripts/finetune.py \
+		-obj mlm -default \
+		-f True -i data/fluorescence_homologs.fasta \
+		-o results/esm2_t6_8M_UR50D_mlm_full_default \
+		-cp facebook/esm2_t6_8M_UR50D -nt1 3 -nt2 3
 ```
 
 *#Example 2: For loop run (scripts/finetune.sh)*
 #Define the function to perform the task (sv or mlm)
+
 ```
 function finetune {
 	objective="$1"
@@ -194,7 +220,8 @@ Three different modes are available:
 - A new column 'esm2_t6_8M_UR50D' will be generated that store the generated scores 
 
 ```
-python scripts/zero_shot.py -cp esm2_t6_8M_UR50D \
+python scripts/zero_shot.py \
+		-cp esm2_t6_8M_UR50D \
 		-mode input \
 		-i data/zshot/BLAT_ECOLX_Ranganathan2015.csv \
 		-fas data/zshot/BLAT_ECOLX_Ranganathan2015.fasta \
@@ -208,7 +235,8 @@ python scripts/zero_shot.py -cp esm2_t6_8M_UR50D \
 Scores will be computed for all possible combinations of wild-type and mutant residues
 
 ```
-python scripts/zero_shot.py -cp esm2_t6_8M_UR50D \
+python scripts/zero_shot.py \
+		-cp esm2_t6_8M_UR50D \
 		-mode single \
 		-fas data/zshot/BLAT_ECOLX_Ranganathan2015.fasta \
 		-o results/zshot_single_esm2_t6_8M_UR50D \
@@ -223,7 +251,8 @@ python scripts/zero_shot.py -cp esm2_t6_8M_UR50D \
 #Try for all residues
 
 ```
-python scripts/zero_shot.py -cp esm2_t6_8M_UR50D \
+python scripts/zero_shot.py \
+		-cp esm2_t6_8M_UR50D \
 		-mode heatmap \
 		-i results/zshot_single_esm2_t6_8M_UR50D.csv \
 		-fas data/zshot/BLAT_ECOLX_Ranganathan2015.fasta \
@@ -235,7 +264,8 @@ python scripts/zero_shot.py -cp esm2_t6_8M_UR50D \
 #Try for residue 0-9
 
 ```
-python scripts/zero_shot.py -cp esm2_t6_8M_UR50D \
+python scripts/zero_shot.py \
+		-cp esm2_t6_8M_UR50D \
 		-mode heatmap \
 		-i results/zshot_single_esm2_t6_8M_UR50D.csv \
 		-fas data/zshot/BLAT_ECOLX_Ranganathan2015.fasta \
