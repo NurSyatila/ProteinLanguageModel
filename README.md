@@ -30,23 +30,19 @@ Jupyter notebook is provided for each section:
 
 Here, JupyterLab will be installed and used. JupyterLab is a more advanced and feature-rich interface for Jupyter Notebooks and provides a flexible environment for working with code, data, and visualizations. 
 
-------------------------------------------------------------
-1. Create a New Conda Environment (Optional but Recommended)
-------------------------------------------------------------
+
+### 1. Create a New Conda Environment (Optional but Recommended)
+   
 It’s generally a good idea to install JupyterLab in a dedicated environment to avoid conflicts with other packages. To create a new environment, run:
 	$ conda env remove -n mlearn -y 
 	$ conda create -n mlearn python=3.12
 	$ conda activate mlearn
 
-------------------------------------------------------------
-2. Install JupyterLab
-------------------------------------------------------------
+### 2. Install JupyterLab
 
 	$ conda install conda-forge::jupyterlab 
 
-------------------------------------------------------------
-3. Launch JupyterLab
-------------------------------------------------------------
+### 3. Launch JupyterLab
 Once JupyterLab is installed, you can start it by running:
 
 	$ jupyter-lab
@@ -57,16 +53,13 @@ Alternatively, create conda environment from the provided yml file:
 
 $ conda env create -f mlearn.yml
 
-------------------------------------------------------------
-4. Analysis
-------------------------------------------------------------
+### 4. Analysis
 - All codes and data used in this study were made available (scripts/ and data/)
 - Installation of required Python packages will be performed on Jupyter Notebook
 - To use the scripts, please manually download required packages separately.
 
-------------------------------------------------------------
-# ML-Beginners :  A step-by-step guide to perform machine learning on GFP dataset
-------------------------------------------------------------
+## ML-Beginners :  A step-by-step guide to perform machine learning on GFP dataset
+
 Dataset: data/umetsu/Umetsu_GFP.csv and data/umetsu/Umetsu_GFP_T-scale_pred.csv
 Step 1: Data loading and processing
 Step 2: Model selection (ms)
@@ -84,9 +77,8 @@ $ python scripts/GFP_practice.py -mode workflow \
 	-feature t_scales \
 	-model gpr
 	
-------------------------------------------------------------
-# SL-AAFeat: A workflow to perform machine learning on amino acid features from a descriptor
-------------------------------------------------------------
+## SL-AAFeat: A workflow to perform machine learning on amino acid features from a descriptor
+
 Dataset: data/fluorescence.csv (contains 'sequence' and 'label')
 
 Step 1: Generate Features  (default sequence column: 'sequence')
@@ -105,9 +97,8 @@ $ python scripts/slearn.py -mode default -i data/ms_whim_scores.csv -o results/m
 #Run hyperparameter optimization (default number of trials, nt = 30, default random seed = 42)
 $ python scripts/slearn.py -mode optim -i data/ms_whim_scores.csv -o results/ms_whim_scores_optim -nt 5
 
-------------------------------------------------------------
-# SL-Embed: A workflow to perform machine learning on embeddings extracted from a protein language model
-------------------------------------------------------------
+## SL-Embed: A workflow to perform machine learning on embeddings extracted from a protein language model
+
 Step 1: Generate embeddings (default sequence column: 'sequence')
 Three different pooling strategies are available: mean (default), max, sum.
 
@@ -125,9 +116,8 @@ $ python scripts/slearn.py -mode default -i data/esm2_t6_8M_UR50D_mean.csv -o re
 #Run hyperparameter optimization (default number of trials, nt = 30, default random seed = 42)
 $ python scripts/slearn.py -mode optim -i data/esm2_t6_8M_UR50D_mean.csv -o results/esm2_t6_8M_UR50D_mean_optim -nt 5
 
-------------------------------------------------------------
-# FT: Protein Language Model Finetuning with Supervised Learning Task (SV) or Masked Language Modeling Task (MLM)
-------------------------------------------------------------
+## FT: Protein Language Model Finetuning with Supervised Learning Task (SV) or Masked Language Modeling Task (MLM)
+
 - Two fine-tuning objectives are available: supervised learning (--objective sv) and masked language modeling (--objective mlm)
 - Two training modes are available: using default hyperparameters (-default) and perform hyperparameter optimization (-optim)
 - Two types are available: full model training (--full True) and LoRA-based model training (--full False)
@@ -175,9 +165,8 @@ $ sh scripts/finetune.sh finetune sv data/fluorescence.csv
 Masked language modeling task
 $ sh scripts/finetune.sh finetune mlm data/fluorescence_homologs.fasta
 
-------------------------------------------------------------
-# ZSHOT
-------------------------------------------------------------
+## ZSHOT
+
 Three different modes are available:
 	- input: Compute score based on input CSV file containing the deep mutational scan
 	- single: Compute score based on single residue mutations generated for given wild-type sequence
